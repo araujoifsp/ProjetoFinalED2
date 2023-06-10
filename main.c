@@ -83,6 +83,10 @@ int main()
         tempo = timer(vetor,tam,options); //atualizar de acordo com o formato das arvores
         printf("Tempo de ordenação: %f segundos\n",tempo[i]);
         pula2Linhas;
+
+        radixSort_lsd(vetor, tam);
+
+
     }
 }
 
