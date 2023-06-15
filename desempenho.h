@@ -4,3 +4,4 @@
 typedef struct timeval;
 double timer(int *vetor, int tamanho, int alg);
 
+

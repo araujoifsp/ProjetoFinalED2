@@ -4,12 +4,9 @@
 #include <string.h>
 #include <locale.h>
 #include "funcoesAuxiliares.h"
-#include "desempenho.h"
-#include "algoritmos.h"
 
 int main()
 {
-    setlocale(LC_ALL,"portuguese");
 
     printf("**** Projeto: Desempenho AVL x Rubro-Negra ****");
     pula2Linhas;
@@ -32,18 +29,19 @@ int main()
     printf("**** Menu ****");
     pula1Linha;
 
+    lerCSV();
 
     while(1) {
 
         int x;
-        arvAVL *raiz;
-        arvoreLLRB *raiz;
+        //arvAVL *raiz;
+        //arvoreLLRB *raiz;
 
-        int *vetor;
+        //int *vetor;
         int i = 0;
-        double *tempo;
+        //double *tempo;
         int arquivo = 0;
-        tempo = malloc(10 * sizeof(double));
+        //tempo = malloc(10 * sizeof(double));
 
         int options, options2;
         menu();
@@ -51,20 +49,20 @@ int main()
 
         switch(options){
         case 1 :
-            apagaTela;
-            printf("\nVoce escolheu a arvore -> AVL\n");
-            pausaTela;
-            sub_menu();
-            options2 = resp_sub_menu();
-            arquivo = opcao_ecolhida(options2);
+            //apagaTela;
+            //printf("\nVoce escolheu a arvore -> AVL\n");
+            //pausaTela;
+            //sub_menu();
+            //options2 = resp_sub_menu();
+            //arquivo = opcao_ecolhida(options2);
             break;
         case 2 :
-            apagaTela;
-            printf("\nVoce escolheu a arvore -> Rubro-Negra\n");
-            pausaTela;
-            sub_menu();
-            options2 = resp_sub_menu();
-            arquivo = opcao_ecolhida(options2);
+           // apagaTela;
+           // printf("\nVoce escolheu a arvore -> Rubro-Negra\n");
+            //pausaTela;
+           // sub_menu();
+           // options2 = resp_sub_menu();
+           // arquivo = opcao_ecolhida(options2);
             break;
         case 3 :
             apagaTela;
@@ -80,11 +78,11 @@ int main()
             break;
         }
 
-        tempo = timer(vetor,tam,options); //atualizar de acordo com o formato das arvores
-        printf("Tempo de ordenação: %f segundos\n",tempo[i]);
+        //tempo = timer(vetor,tam,options); //atualizar de acordo com o formato das arvores
+        //printf("Tempo de ordenação: %f segundos\n",tempo[i]);
         pula2Linhas;
 
-        radixSort_lsd(vetor, tam);
+        //radixSort_lsd(vetor, tam);
 
 
     }

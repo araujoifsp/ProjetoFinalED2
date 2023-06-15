@@ -5,7 +5,7 @@
 #include <ctype.h>
 #include "funcoesAuxiliares.h"
 #include "desempenho.h"
-#include "algoritmos.h"
+#include "arvore.h"
 
 #define RED 1
 #define BLACK 0
@@ -76,98 +76,15 @@ int resp_sub_menu() {
     return x;
 }
 
-Funcionario* lerCSV(const char* nomeArquivo) {
-    FILE* arquivo = fopen(nomeArquivo, "r");
-    if (arquivo == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
-        return NULL;
-    }
-
-    Funcionario* raiz = NULL;
-    char linha[256];
-    while (fgets(linha, sizeof(linha), arquivo)) {
-        Funcionario* novoFuncionario = (Funcionario*)malloc(sizeof(Funcionario));
-
-        char* token = strtok(linha, ";");
-        novoFuncionario->codigo = atoi(token);
-
-        token = strtok(NULL, ";");
-        strcpy(novoFuncionario->nome, token);
-
-        token = strtok(NULL, ";");
-        novoFuncionario->idade = atoi(token);
-
-        token = strtok(NULL, ";");
-        strcpy(novoFuncionario->empresa, token);
-
-        token = strtok(NULL, ";");
-        strcpy(novoFuncionario->departamento, token);
-
-        token = strtok(NULL, ";");
-        novoFuncionario->salario = atof(token);
-
-        novoFuncionario->esquerda = NULL;
-        novoFuncionario->direita = NULL;
-
-        raiz = inserirFuncionario(raiz, novoFuncionario);
-    }
-
-    fclose(arquivo);
-    return raiz;
-}
-
-typedef struct Funcionario {
+typedef struct FUNC {
     int codigo;
     char nome[50];
     int idade;
     char empresa[50];
     char departamento[50];
-    float salario;
-    struct Funcionario* esquerda;
-    struct Funcionario* direita;
-} Funcionario;
-
-Funcionario* criarFuncionario(int codigo, const char* nome, int idade, const char* empresa, const char* departamento, float salario) {
-    Funcionario* novoFuncionario = (Funcionario*)malloc(sizeof(Funcionario));
-    novoFuncionario->codigo = codigo;
-    strcpy(novoFuncionario->nome, nome);
-    novoFuncionario->idade = idade;
-    strcpy(novoFuncionario->empresa, empresa);
-    strcpy(novoFuncionario->departamento, departamento);
-    novoFuncionario->salario = salario;
-    novoFuncionario->esquerda = NULL;
-    novoFuncionario->direita = NULL;
-    return novoFuncionario;
-}
-
-Funcionario* inserirFuncionario(Funcionario* raiz, Funcionario* novoFuncionario) {
-    if (raiz == NULL) {
-        return novoFuncionario;
-    }
-
-    if (novoFuncionario->codigo < raiz->codigo) {
-        raiz->esquerda = inserirFuncionario(raiz->esquerda, novoFuncionario);
-    } else {
-        raiz->direita = inserirFuncionario(raiz->direita, novoFuncionario);
-    }
-
-    return raiz;
-}
-void salvarCSV(int* vetor, int tamanho, const char* nomeArquivo) {
-    FILE* arquivo = fopen(nomeArquivo, "w");
-    if (arquivo == NULL) {
-        printf("Erro ao abrir o arquivo para escrita.\n");
-        return;
-    }
-
-    for (int i = 0; i < tamanho; i++) {
-        fprintf(arquivo, "%d;", vetor[i]);
-    }
-
-    fclose(arquivo);
-}
-
-
+    float sal;
+}Funcionarios;
+/*
 
 void radixSort_lsd(int* vetor, int n) {
     int i;
@@ -200,9 +117,9 @@ void radixSort_lsd(int* vetor, int n) {
             vetor[i] = output[i];
         }
     }
-}
-
-void enviarOrdenado(Funcionario *funcionarios, int n){
+}*/
+/*
+void enviarOrdenado(Funcionario *funcionario, int n){
     FILE *arq;
     arq = fopen("ordenado.csv", "w");
     if(arq == NULL){
@@ -218,4 +135,51 @@ void enviarOrdenado(Funcionario *funcionarios, int n){
 
     fclose(arq);
 }
+*/
 
+void imprimirFuncionario(Funcionarios* func) {
+    printf("Código: %d\n", func->codigo);
+    printf("Nome: %s\n", func->nome);
+    printf("Idade: %d\n", func->idade);
+    printf("Departamento: %s\n", func->departamento);
+    printf("Salário: %.2f\n", func->sal);
+    printf("\n");
+}
+
+
+void lerCSV() {
+    FILE *f;
+    char linha[200];  // Tamanho máximo de uma linha no f CSV
+
+    // Abre o f CSV em modo de leitura
+    f = fopen("massaDados.csv", "r");
+
+    if (f == NULL) {
+        printf("Erro ao abrir o f.\n");
+        return;
+    }
+
+    //Lê cada linha do f e imprime na tela
+    while (fgets(linha, 300, f)) {
+        printf("%s", linha);
+        Funcionarios func;
+        //func = malloc(sizeof(Funcionarios));
+        //char *texto = linha;
+        func.codigo = atoi(strtok(linha, ";"));
+        strcpy(func.nome, strtok(NULL, ";"));
+        printf("aaaaa");
+        func.idade = atoi(strtok(NULL, ";"));
+        strcpy(func.departamento, strtok(NULL, ";"));
+        func.sal = atof(strtok(NULL, "\n"));
+            // Processar os dados do funcionário conforme necessário
+        //}
+}
+
+    rewind(f);  // Volta ao início do arquivo para ler novamente
+
+      // Tamanho máximo de uma linha no segundo loop
+
+
+    // Fecha o f
+    fclose(f);
+}

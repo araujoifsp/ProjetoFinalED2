@@ -1,0 +1,45 @@
+# depslib dependency file v1.0
+1686783449 source:c:\users\aluno\desktop\teste\arvore\avl.c
+	<stdio.h>
+	<stdlib.h>
+
+1686783074 source:c:\users\aluno\desktop\teste\arvore\arvore.c
+	<stdio.h>
+	<stdlib.h>
+	<sys/time.h>
+	"funcoesAuxiliares.h"
+	"arvore.h"
+	"desempenho.h"
+
+1686785183 c:\users\aluno\desktop\teste\arvore\funcoesauxiliares.h
+
+1686782829 c:\users\aluno\desktop\teste\arvore\arvore.h
+	<stdio.h>
+
+1686782866 c:\users\aluno\desktop\teste\arvore\desempenho.h
+	<stdio.h>
+	<sys/time.h>
+
+1686787896 source:c:\users\aluno\desktop\teste\arvore\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<locale.h>
+	"funcoesAuxiliares.h"
+
+1686783302 source:c:\users\aluno\desktop\teste\arvore\desempenho.c
+	<stdlib.h>
+	<sys/time.h>
+	"funcoesAuxiliares.h"
+	"desempenho.h"
+	"arvore.h"
+
+1686788113 source:c:\users\aluno\desktop\teste\arvore\funcoesauxiliares.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"funcoesAuxiliares.h"
+	"desempenho.h"
+	"arvore.h"
+

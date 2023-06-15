@@ -1,9 +1,9 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
 #include "funcoesAuxiliares.h"
 #include "desempenho.h"
-#include "algoritmos.h"
+#include "arvore.h"
 
 double timer(int *vetor, int tamanho, int arv){
     struct timeval inicio, fim;
@@ -11,7 +11,7 @@ double timer(int *vetor, int tamanho, int arv){
     gettimeofday(&inicio, NULL);
     switch(arv){
         case 1:
-                arvAVL(vetor, tamanho); // atualizar para o modo de preenchimento
+               // arvAVL(vetor, tamanho); // atualizar para o modo de preenchimento
                 break;
 
         case 2:
@@ -25,3 +25,5 @@ double timer(int *vetor, int tamanho, int arv){
 }
 
 
+n
+*/
