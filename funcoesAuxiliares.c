@@ -141,6 +141,7 @@ void imprimirFuncionario(Funcionarios* func) {
     printf("Código: %d\n", func->codigo);
     printf("Nome: %s\n", func->nome);
     printf("Idade: %d\n", func->idade);
+    printf("Empresa: %s\n", func->empresa);
     printf("Departamento: %s\n", func->departamento);
     printf("Salário: %.2f\n", func->sal);
     printf("\n");
@@ -161,19 +162,17 @@ void lerCSV() {
 
     //Lê cada linha do f e imprime na tela
     while (fgets(linha, 300, f)) {
-        printf("%s", linha);
         Funcionarios func;
-        //func = malloc(sizeof(Funcionarios));
-        //char *texto = linha;
+        char *texto = linha;
         func.codigo = atoi(strtok(linha, ";"));
         strcpy(func.nome, strtok(NULL, ";"));
-        printf("aaaaa");
         func.idade = atoi(strtok(NULL, ";"));
+        strcpy(func.empresa, strtok(NULL, ";"));
         strcpy(func.departamento, strtok(NULL, ";"));
-        func.sal = atof(strtok(NULL, "\n"));
-            // Processar os dados do funcionário conforme necessário
-        //}
-}
+        func.sal = atof(strtok(NULL, ";"));
+        imprimirFuncionario(&func);
+        // Processar os dados do funcionário conforme necessário
+    }
 
     rewind(f);  // Volta ao início do arquivo para ler novamente
 
