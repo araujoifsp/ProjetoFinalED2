@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,14 +8,6 @@
 
 #define RED 1
 #define BLACK 0
-typedef struct FUNC {
-    int codigo;
-    char nome[50];
-    int idade;
-    char empresa[50];
-    char departamento[50];
-    float sal;
-}Funcionarios;
 
 void menu() {
     pula1Linha;
@@ -146,6 +137,14 @@ void lerCSV() {
         return;
     }
 
+      int numFuncionarios = 0;
+     while (fgets(linha, 300, f)) {
+        numFuncionarios++;
+    }
+     rewind(f);
+
+    Funcionarios* vetorFuncionarios = (Funcionarios*) malloc(numFuncionarios * sizeof(Funcionarios));
+    int i = 0;
     //L� cada linha do f e imprime na tela
     while (fgets(linha, 300, f)) {
         Funcionarios func;
@@ -157,20 +156,42 @@ void lerCSV() {
         strcpy(func.departamento, strtok(NULL, ";"));
         func.sal = atof(strtok(NULL, ";"));
 
-           struct ArvoreAVL* raiz = NULL;
+        struct ArvoreAVL* raiz = NULL;
+
+        vetorFuncionarios[i] = func;
+        i++;
+
 
 //        raiz = inserir(raiz, func);
 
         //imprimirFuncionario(&func);
         // Processar os dados do funcion�rio conforme necess�rio
     }
-
     rewind(f);  // Volta ao in�cio do arquivo para ler novamente
 
-      // Tamanho m�ximo de uma linha no segundo loop
+     radixSort(vetorFuncionarios, numFuncionarios);
 
+    exportToCSV(vetorFuncionarios, numFuncionarios);
+
+   free(vetorFuncionarios);
 
     // Fecha o f
     fclose(f);
 }
 
+void exportToCSV(Funcionarios arr[], int n) {
+    FILE* f = fopen("ordenado.csv", "w");
+    if (f == NULL) {
+        printf("Erro ao abrir o arquivo");
+        return;
+    }
+
+    fprintf(f, "Código;Nome;Idade;Empresa;Departamento;Salário\n");
+    for (int i = 0; i < n; i++) {
+        fprintf(f, "%d;%s;%d;%s;%s;%.2f\n", arr[i].codigo, arr[i].nome, arr[i].idade,
+                arr[i].empresa, arr[i].departamento, arr[i].sal);
+    }
+
+    fclose(f);
+    printf("Dados exportados para o arquivo");
+}

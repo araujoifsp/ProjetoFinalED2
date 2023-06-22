@@ -144,39 +144,39 @@ void shellSort(int *vetor, int n){
 }
 
 
-void radixSort_lsd(int *vetor, int n) {
-    int max_num = vetor[0];
+void countingSort(Funcionarios arr[], int n, int exp) {
+    int output[n];
+    int count[10] = {0};
+
+    for (int i = 0; i < n; i++) {
+        count[(arr[i].codigo / exp) % 10]++;
+    }
+
+    for (int i = 1; i < 10; i++) {
+        count[i] += count[i - 1];
+    }
+
+    for (int i = n - 1; i >= 0; i--) {
+        output[count[(arr[i].codigo / exp) % 10] - 1] = arr[i].codigo;
+        count[(arr[i].codigo / exp) % 10]--;
+    }
+
+    for (int i = 0; i < n; i++) {
+        arr[i].codigo = output[i];
+    }
+}
+
+void radixSort(Funcionarios arr[], int n) {
+    int max = arr[0].codigo;
     for (int i = 1; i < n; i++) {
-        if (vetor[i] > max_num) {
-            max_num = vetor[i];
+        if (arr[i].codigo > max) {
+            max = arr[i].codigo;
         }
     }
 
-    int exp = 1;
-
-    while (max_num / exp > 0) {
-        // Cria buckets para cada dígito (0-9)
-        int buckets[10][n];
-        int bucket_sizes[10] = {0};
-
-        // Coloca cada número na lista em seu bucket correspondente
-        for (int i = 0; i < n; i++) {
-            int digit = (vetor[i] / exp) % 10;
-            buckets[digit][bucket_sizes[digit]] = vetor[i]; bucket_sizes[digit]++;
-        }
-
-        // Reconstroi a lista ordenada pelos dígitos atuais
-        int k = 0;
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < bucket_sizes[i]; j++) {
-                vetor[k] = buckets[i][j]; k++;
-            }
-        }
-
-        // Incrementa o dígito em 10 vezes para a próxima iteração
-        exp *= 10;
+    for (int exp = 1; max / exp > 0; exp *= 10) {
+        countingSort(arr, n, exp);
     }
-
 }
 
 void quickSort(int *vetor, int inicio, int fim) {

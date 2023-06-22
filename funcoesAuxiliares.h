@@ -10,7 +10,14 @@ typedef struct NO *arvAVL;
 
 typedef struct NO *arvoreLLRB;
 
-typedef struct FUNC Funcionarios;
+typedef struct FUNC {
+    int codigo;
+    char nome[50];
+    int idade;
+    char empresa[50];
+    char departamento[50];
+    float sal;
+}Funcionarios;
 
 void menu();
 
