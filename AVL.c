@@ -1,113 +1,127 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "funcoesAuxiliares.h"
+#include "arvore.h"
+#include "AVL.h"
+#include "desempenho.h"
 
+/*
 typedef struct ArvoreAVL {
-    int dado;
+    struct Funcionarios* dado;
     struct ArvoreAVL* esquerda;
     struct ArvoreAVL* direita;
     int altura;
-} id;
+} ArvoreAVL;
 
 int max(int a, int b) {
     return (a > b) ? a : b;
 }
 
-int getAltura(id* no) {
-    if (no == NULL)
+int altura(ArvoreAVL* node) {
+    if (node == NULL)
         return 0;
-    return no->altura;
+    return node->altura;
 }
 
-id* criarNo(int dado) {
-    id* novoNo = (id*)malloc(sizeof(id));
-    novoNo->dado = dado;
+int fatorBalanceamento(ArvoreAVL* node) {
+    if (node == NULL)
+        return 0;
+    return altura(node->esquerda) - altura(node->direita);
+}
+
+ArvoreAVL* criarNo(Funcionarios* funcionario) {
+    ArvoreAVL* novoNo = (ArvoreAVL*)malloc(sizeof(ArvoreAVL));
+    novoNo->dado = funcionario;
     novoNo->esquerda = NULL;
     novoNo->direita = NULL;
     novoNo->altura = 1;
     return novoNo;
 }
 
-id* rotacionarDireita(id* y) {
-    id* x = y->esquerda;
-    id* T2 = x->direita;
+ArvoreAVL* rotacaoDireita(ArvoreAVL* y) {
+    ArvoreAVL* x = y->esquerda;
+    ArvoreAVL* T2 = x->direita;
 
     x->direita = y;
     y->esquerda = T2;
 
-    y->altura = max(getAltura(y->esquerda), getAltura(y->direita)) + 1;
-    x->altura = max(getAltura(x->esquerda), getAltura(x->direita)) + 1;
+    y->altura = max(altura(y->esquerda), altura(y->direita)) + 1;
+    x->altura = max(altura(x->esquerda), altura(x->direita)) + 1;
 
     return x;
 }
 
-id* rotacionarEsquerda(id* x) {
-    id* y = x->direita;
-    id* T2 = y->esquerda;
+ArvoreAVL* rotacaoEsquerda(ArvoreAVL* x) {
+    ArvoreAVL* y = x->direita;
+    ArvoreAVL* T2 = y->esquerda;
 
     y->esquerda = x;
     x->direita = T2;
 
-    x->altura = max(getAltura(x->esquerda), getAltura(x->direita)) + 1;
-    y->altura = max(getAltura(y->esquerda), getAltura(y->direita)) + 1;
+    x->altura = max(altura(x->esquerda), altura(x->direita)) + 1;
+    y->altura = max(altura(y->esquerda), altura(y->direita)) + 1;
 
     return y;
 }
 
-int getBalanceamento(id* no) {
-    if (no == NULL)
-        return 0;
-    return getAltura(no->esquerda) - getAltura(no->direita);
-}
-
-id* inserir(id* no, int dado) {
-    if (no == NULL)
-        return criarNo(dado);
-
-    if (dado < no->dado)
-        no->esquerda = inserir(no->esquerda, dado);
-    else if (dado > no->dado)
-        no->direita = inserir(no->direita, dado);
-    else
-        return no;
-
-    no->altura = 1 + max(getAltura(no->esquerda), getAltura(no->direita));
-
-    int balanceamento = getBalanceamento(no);
-
-    if (balanceamento > 1 && dado < no->esquerda->dado)
-        return rotacionarDireita(no);
-
-    if (balanceamento < -1 && dado > no->direita->dado)
-        return rotacionarEsquerda(no);
-
-    if (balanceamento > 1 && dado > no->esquerda->dado) {
-        no->esquerda = rotacionarEsquerda(no->esquerda);
-        return rotacionarDireita(no);
+ArvoreAVL* inserir(ArvoreAVL* node, Funcionarios* funcionario) {
+    if (node == NULL){
+        return criarNo(funcionario);
     }
 
-    if (balanceamento < -1 && dado < no->direita->dado) {
-        no->direita = rotacionarDireita(no->direita);
-        return rotacionarEsquerda(no);
+    if (funcionario->codigo < node->dado.codigo) {
+        node->esquerda = inserir(node->esquerda, funcionario);
+    } else if (funcionario.codigo > node->dado.codigo) {
+        node->direita = inserir(node->direita, funcionario);
+    } else {
+        // O funcionï¿½rio jï¿½ existe na ï¿½rvore (caso queira evitar duplicatas)
+        return node;
     }
 
-    return no;
+    node->altura = 1 + max(altura(node->esquerda), altura(node->direita));
+
+    int balanceamento = fatorBalanceamento(node);
+
+    // Casos de rotaï¿½ï¿½o AVL
+    if (balanceamento > 1 && funcionario.codigo < node->esquerda->dado.codigo) {
+        return rotacaoDireita(node);
+    }
+
+    if (balanceamento < -1 && funcionario.codigo > node->direita->dado.codigo) {
+        return rotacaoEsquerda(node);
+    }
+
+    if (balanceamento > 1 && funcionario.codigo > node->esquerda->dado.codigo) {
+        node->esquerda = rotacaoEsquerda(node->esquerda);
+        return rotacaoDireita(node);
+    }
+
+    if (balanceamento < -1 && funcionario.codigo < node->direita->dado.codigo) {
+        node->direita = rotacaoDireita(node->direita);
+        return rotacaoEsquerda(node);
+    }
+
+    return node;
 }
 
-void percorrerEmOrdem(id* raiz) {
-    if (raiz != NULL) {
-        percorrerEmOrdem(raiz->esquerda);
-        printf("%d ", raiz->dado);
-        percorrerEmOrdem(raiz->direita);
+// Funï¿½ï¿½o de exemplo para percorrer a ï¿½rvore em ordem
+void percorrerEmOrdem(ArvoreAVL* root) {
+    if (root != NULL) {
+        percorrerEmOrdem(root->esquerda);
+        // Faï¿½a algo com os dados do funcionï¿½rio, por exemplo, imprimir
+        printf("%s\n", root->dado->nome);
+        percorrerEmOrdem(root->direita);
     }
 }
+
 /*
 int main() {
     id* raiz = NULL;
 
     raiz = //vir aqui a lista de func
 
-    printf("Percurso em ordem da árvore AVL: ");
+    printf("Percurso em ordem da ï¿½rvore AVL: ");
     percorrerEmOrdem(raiz);
     printf("\n");
 

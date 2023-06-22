@@ -3,7 +3,7 @@
 #include <sys/time.h>
 #include "funcoesAuxiliares.h"
 #include "desempenho.h"
-#include "algoritmos.h"
+#include "arvore.h"
 #define min(a, b) ((a) < (b) ? (a) : (b))
 
 void insertion_sort_tim(int *arr, int left, int right) {

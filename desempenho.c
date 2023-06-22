@@ -27,3 +27,4 @@ double timer(int *vetor, int tamanho, int arv){
 
 n
 */
+

@@ -9,20 +9,14 @@
 
 #define RED 1
 #define BLACK 0
-
-struct NOavl {
-    int info;
-    int alt; //altura
-    struct NOavl *esq;
-    struct NOavl *dir;
-};
-
-struct NOrb {
-    int info;
-    struct NOrb *esq;
-    struct NOrb *dir;
-    int cor;
-};
+typedef struct FUNC {
+    int codigo;
+    char nome[50];
+    int idade;
+    char empresa[50];
+    char departamento[50];
+    float sal;
+}Funcionarios;
 
 void menu() {
     pula1Linha;
@@ -76,14 +70,6 @@ int resp_sub_menu() {
     return x;
 }
 
-typedef struct FUNC {
-    int codigo;
-    char nome[50];
-    int idade;
-    char empresa[50];
-    char departamento[50];
-    float sal;
-}Funcionarios;
 /*
 
 void radixSort_lsd(int* vetor, int n) {
@@ -138,19 +124,19 @@ void enviarOrdenado(Funcionario *funcionario, int n){
 */
 
 void imprimirFuncionario(Funcionarios* func) {
-    printf("Código: %d\n", func->codigo);
+    printf("Cï¿½digo: %d\n", func->codigo);
     printf("Nome: %s\n", func->nome);
     printf("Idade: %d\n", func->idade);
     printf("Empresa: %s\n", func->empresa);
     printf("Departamento: %s\n", func->departamento);
-    printf("Salário: %.2f\n", func->sal);
+    printf("Salï¿½rio: %.2f\n", func->sal);
     printf("\n");
 }
 
 
 void lerCSV() {
     FILE *f;
-    char linha[200];  // Tamanho máximo de uma linha no f CSV
+    char linha[200];  // Tamanho mï¿½ximo de uma linha no f CSV
 
     // Abre o f CSV em modo de leitura
     f = fopen("massaDados.csv", "r");
@@ -160,7 +146,7 @@ void lerCSV() {
         return;
     }
 
-    //Lê cada linha do f e imprime na tela
+    //Lï¿½ cada linha do f e imprime na tela
     while (fgets(linha, 300, f)) {
         Funcionarios func;
         char *texto = linha;
@@ -170,15 +156,21 @@ void lerCSV() {
         strcpy(func.empresa, strtok(NULL, ";"));
         strcpy(func.departamento, strtok(NULL, ";"));
         func.sal = atof(strtok(NULL, ";"));
-        imprimirFuncionario(&func);
-        // Processar os dados do funcionário conforme necessário
+
+           struct ArvoreAVL* raiz = NULL;
+
+//        raiz = inserir(raiz, func);
+
+        //imprimirFuncionario(&func);
+        // Processar os dados do funcionï¿½rio conforme necessï¿½rio
     }
 
-    rewind(f);  // Volta ao início do arquivo para ler novamente
+    rewind(f);  // Volta ao inï¿½cio do arquivo para ler novamente
 
-      // Tamanho máximo de uma linha no segundo loop
+      // Tamanho mï¿½ximo de uma linha no segundo loop
 
 
     // Fecha o f
     fclose(f);
 }
+

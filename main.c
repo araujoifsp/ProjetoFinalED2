@@ -18,7 +18,7 @@ int main()
     pula1Linha;
     printf("Guilherme Correa Monteiro - GU3026647");
     pula1Linha;
-    printf("Jéssica de Medeiros Corrêa - GU3027252");
+    printf("Jï¿½ssica de Medeiros Corrï¿½a - GU3027252");
     pula1Linha;
     printf("Leonardo dos Reis - GU3027287");
     pula1Linha;
@@ -79,7 +79,7 @@ int main()
         }
 
         //tempo = timer(vetor,tam,options); //atualizar de acordo com o formato das arvores
-        //printf("Tempo de ordenação: %f segundos\n",tempo[i]);
+        //printf("Tempo de ordenaï¿½ï¿½o: %f segundos\n",tempo[i]);
         pula2Linhas;
 
         //radixSort_lsd(vetor, tam);

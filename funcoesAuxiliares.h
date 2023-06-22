@@ -10,7 +10,7 @@ typedef struct NO *arvAVL;
 
 typedef struct NO *arvoreLLRB;
 
-typedef struct FUNC *Funcionario;
+typedef struct FUNC Funcionarios;
 
 void menu();
 
@@ -33,3 +33,5 @@ void radixSort_lsd(int arr[], int n);
 void lerCSV();
 
 //enviarOrdenado(FUNC *Funcionario, int n);
+
+
