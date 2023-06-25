@@ -171,18 +171,13 @@ void lerCSVOrdenado(arvoreLLRB *raiz, int options) {
     /*
     for (int j = 0; j < numFuncionarios; j++) {
         imprimirFuncionario(&vetorFuncionarios[j]);
-    }
-<<<<<<< HEAD
+    }*/
 
     if(options == 2) {
         insere_arvoreLLRB(raiz, vetorFuncionarios, numFuncionarios);
         printf("Realizada a insercao com arvore rubro negra\n");
     }
     //aqui coloca a do arvore AVL
-=======
-    */
-    insere_arvoreLLRB(raiz, vetorFuncionarios, numFuncionarios);
->>>>>>> 26974a850c4b71f31ce42af7a53e7081ffd0e1d0
 
     free(vetorFuncionarios);
 }
