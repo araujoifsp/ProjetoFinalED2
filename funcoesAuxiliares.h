@@ -1,5 +1,3 @@
-
-
 #define apagaTela system("cls")
 #define pula2Linhas printf("\n\n")
 #define pula1Linha printf("\n")
@@ -37,7 +35,21 @@ void salvarCSV(int* vetor, int tamanho, const char* nomeArquivo);
 
 void radixSort_lsd(int arr[], int n);
 
-void lerCSV();
+void lerCSV(arvoreLLRB *raiz);
+
+void exportToCSV(Funcionarios arr[], int n);
+
+int cor(struct NO *H);
+void trocaCor(struct NO *H);
+void insere_arvoreLLRB(arvoreLLRB *raiz, Funcionarios vetorFuncionarios[], int tamanho);
+void insere_arvoreLLRB(arvoreLLRB *raiz, Funcionarios vetorFuncionarios[], int tamanho);
+int remove_arvoreLLRB(arvoreLLRB *raiz, int valor);
+void liberar_arvBin(arvoreLLRB *raiz);
+void libera_NO(struct NO *no);
+int vazia_arvBin(arvoreLLRB *raiz);
+arvoreLLRB *cria_arvBin();
+void lerCSVOrdenado(arvoreLLRB *raiz);
+
 
 //enviarOrdenado(FUNC *Funcionario, int n);
 

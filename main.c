@@ -7,6 +7,7 @@
 
 int main()
 {
+    arvoreLLRB *raiz;
 
     printf("**** Projeto: Desempenho AVL x Rubro-Negra ****");
     pula2Linhas;
@@ -22,20 +23,16 @@ int main()
     pula1Linha;
     printf("Leonardo dos Reis - GU3027287");
     pula1Linha;
-    printf("Lucas Knupp - GU3027252");
+    printf("Lucas Knupp - GU3026787");
     pula1Linha;
     pula2Linhas;
 
     printf("**** Menu ****");
     pula1Linha;
 
-    lerCSV();
-
     while(1) {
 
         int x;
-        //arvAVL *raiz;
-        //arvoreLLRB *raiz;
 
         //int *vetor;
         int i = 0;
@@ -48,7 +45,7 @@ int main()
         options = resp_menu();
 
         switch(options){
-        case 1 :
+        case 1 : ;
             //apagaTela;
             //printf("\nVoce escolheu a arvore -> AVL\n");
             //pausaTela;
@@ -56,15 +53,38 @@ int main()
             //options2 = resp_sub_menu();
             //arquivo = opcao_ecolhida(options2);
             break;
-        case 2 :
-           // apagaTela;
-           // printf("\nVoce escolheu a arvore -> Rubro-Negra\n");
-            //pausaTela;
-           // sub_menu();
-           // options2 = resp_sub_menu();
-           // arquivo = opcao_ecolhida(options2);
+        case 2 : ;
+            apagaTela;
+           printf("\nVoce escolheu a arvore -> Rubro-Negra\n");
+            pausaTela;
+           sub_menu();
+           options2 = resp_sub_menu();
+           arquivo = opcao_ecolhida(options2);
+
+            raiz = cria_arvBin();
+            switch(options2){
+                case 1:
+                    lerCSVOrdenado(raiz);
+                    if(vazia_arvBin(raiz)){
+                        printf("A arvore esta vazia");
+                    } else {
+                        printf("A arvore possui elementos");
+                    }
+                    printf("\n");
+                break;
+                case 2:
+                    lerCSV(raiz);
+                    if(vazia_arvBin(raiz)){
+                        printf("A arvore esta vazia");
+                    } else {
+                        printf("A arvore possui elementos");
+                    }
+                    printf("\n");
+                break;
+            }
+            liberar_arvBin(raiz);
             break;
-        case 3 :
+        case 3 : ;
             apagaTela;
             printf("\nVoce escolheu a opcao 3 -> Sair do programa!\n");
             pula2Linhas;

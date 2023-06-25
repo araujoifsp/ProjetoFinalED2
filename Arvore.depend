@@ -43,3 +43,60 @@
 	"desempenho.h"
 	"arvore.h"
 
+1687659797 source:c:\users\lucas\desktop\projetoed2ordenacaocsv\projetofinaled2\arvore.c
+	<stdio.h>
+	<stdlib.h>
+	<sys/time.h>
+	"funcoesAuxiliares.h"
+	"arvore.h"
+	"desempenho.h"
+
+1687670403 c:\users\lucas\desktop\projetoed2ordenacaocsv\projetofinaled2\funcoesauxiliares.h
+
+1687659797 c:\users\lucas\desktop\projetoed2ordenacaocsv\projetofinaled2\arvore.h
+	<stdio.h>
+
+1687659797 c:\users\lucas\desktop\projetoed2ordenacaocsv\projetofinaled2\desempenho.h
+	<stdio.h>
+	<sys/time.h>
+
+1687659797 source:c:\users\lucas\desktop\projetoed2ordenacaocsv\projetofinaled2\avl.c
+	<stdio.h>
+	<stdlib.h>
+	"funcoesAuxiliares.h"
+	"arvore.h"
+	"AVL.h"
+	"desempenho.h"
+
+1687659797 c:\users\lucas\desktop\projetoed2ordenacaocsv\projetofinaled2\avl.h
+
+1687659797 source:c:\users\lucas\desktop\projetoed2ordenacaocsv\projetofinaled2\desempenho.c
+	<stdlib.h>
+	<sys/time.h>
+	"funcoesAuxiliares.h"
+	"desempenho.h"
+	"arvore.h"
+
+1687670578 source:c:\users\lucas\desktop\projetoed2ordenacaocsv\projetofinaled2\funcoesauxiliares.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"funcoesAuxiliares.h"
+	"desempenho.h"
+	"arvore.h"
+	"rubroNegra.h"
+
+1687670252 source:c:\users\lucas\desktop\projetoed2ordenacaocsv\projetofinaled2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<locale.h>
+	"funcoesAuxiliares.h"
+
+1687662629 c:\users\lucas\desktop\projetoed2ordenacaocsv\projetofinaled2\rubronegra.h
+
+1687662620 source:c:\users\lucas\desktop\projetoed2ordenacaocsv\projetofinaled2\rubronegra.c
+	<stdlib.h>
+	"rubroNegra.h"
+
