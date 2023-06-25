@@ -2,7 +2,7 @@
 #include <sys/time.h>
 
 typedef struct timeval;
-double timer(int *vetor, int tamanho, int alg);
+long timer(arvoreLLRB *raiz, int options2, int options);
 
 
 

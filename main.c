@@ -32,6 +32,8 @@ int main()
 
     while(1) {
 
+        long tempo = 0;
+
         int x;
 
         //int *vetor;
@@ -55,33 +57,14 @@ int main()
             break;
         case 2 : ;
             apagaTela;
-           printf("\nVoce escolheu a arvore -> Rubro-Negra\n");
+            printf("\nVoce escolheu a arvore -> Rubro-Negra\n");
             pausaTela;
-           sub_menu();
-           options2 = resp_sub_menu();
-           arquivo = opcao_ecolhida(options2);
-
+            sub_menu();
+            options2 = resp_sub_menu();
+            arquivo = opcao_ecolhida(options2);
             raiz = cria_arvBin();
-            switch(options2){
-                case 1:
-                    lerCSVOrdenado(raiz, options);
-                    if(vazia_arvBin(raiz)){
-                        printf("A arvore esta vazia");
-                    } else {
-                        printf("A arvore possui elementos");
-                    }
-                    printf("\n");
-                break;
-                case 2:
-                    lerCSV(raiz, options);
-                    if(vazia_arvBin(raiz)){
-                        printf("A arvore esta vazia");
-                    } else {
-                        printf("A arvore possui elementos");
-                    }
-                    printf("\n");
-                break;
-            }
+            tempo = timer(raiz,options2,options);
+            printf("Tempo de execucao da Arvore Rubro Negra: %ld microssegundos\n", tempo);
             liberar_arvBin(raiz);
             break;
         case 3 : ;

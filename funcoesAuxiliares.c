@@ -104,10 +104,11 @@ void lerCSV(arvoreLLRB *raiz, int options) {
     }
 
     fclose(f);
-
+    /*
     for (int j = 0; j < numFuncionarios; j++) {
         imprimirFuncionario(&vetorFuncionarios[j]);
     }
+    */
     if(options == 2) {
         insere_arvoreLLRB(raiz, vetorFuncionarios, numFuncionarios);
         printf("Realizada a insercao com arvore rubro negra");
@@ -167,10 +168,11 @@ void lerCSVOrdenado(arvoreLLRB *raiz, int options) {
 
     fclose(f);
 
+    /*
     for (int j = 0; j < numFuncionarios; j++) {
         imprimirFuncionario(&vetorFuncionarios[j]);
     }
-
+    */
     insere_arvoreLLRB(raiz, vetorFuncionarios, numFuncionarios);
 
     free(vetorFuncionarios);
