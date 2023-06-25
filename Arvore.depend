@@ -99,3 +99,54 @@
 	<stdlib.h>
 	"rubroNegra.h"
 
+1687699844 source:c:\users\gabriel\onedrive\햞ea de trabalho\projetofinaled2\arvore.c
+	<stdio.h>
+	<stdlib.h>
+	<sys/time.h>
+	"funcoesAuxiliares.h"
+	"arvore.h"
+	"desempenho.h"
+
+1687699844 c:\users\gabriel\onedrive\햞ea de trabalho\projetofinaled2\funcoesauxiliares.h
+
+1687699844 c:\users\gabriel\onedrive\햞ea de trabalho\projetofinaled2\arvore.h
+	<stdio.h>
+
+1687701343 c:\users\gabriel\onedrive\햞ea de trabalho\projetofinaled2\desempenho.h
+	<stdio.h>
+	<sys/time.h>
+
+1687699844 source:c:\users\gabriel\onedrive\햞ea de trabalho\projetofinaled2\avl.c
+	<stdio.h>
+	<stdlib.h>
+	"funcoesAuxiliares.h"
+	"arvore.h"
+	"AVL.h"
+	"desempenho.h"
+
+1687699844 c:\users\gabriel\onedrive\햞ea de trabalho\projetofinaled2\avl.h
+
+1687701594 source:c:\users\gabriel\onedrive\햞ea de trabalho\projetofinaled2\desempenho.c
+	<stdio.h>
+	<stdlib.h>
+	<sys/time.h>
+	"funcoesAuxiliares.h"
+	"desempenho.h"
+	"arvore.h"
+
+1687701066 source:c:\users\gabriel\onedrive\햞ea de trabalho\projetofinaled2\funcoesauxiliares.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"funcoesAuxiliares.h"
+	"desempenho.h"
+	"arvore.h"
+
+1687701659 source:c:\users\gabriel\onedrive\햞ea de trabalho\projetofinaled2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<locale.h>
+	"funcoesAuxiliares.h"
+

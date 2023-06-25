@@ -1,30 +1,37 @@
-/*#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
 #include "funcoesAuxiliares.h"
 #include "desempenho.h"
 #include "arvore.h"
 
-double timer(int *vetor, int tamanho, int arv){
-    struct timeval inicio, fim;
+long timer(arvoreLLRB *raiz, int options2, int options){
+        struct timeval inicio, fim;
 
-    gettimeofday(&inicio, NULL);
-    switch(arv){
-        case 1:
-               // arvAVL(vetor, tamanho); // atualizar para o modo de preenchimento
+            gettimeofday(&inicio, NULL);
+            switch(options2){
+                case 1:
+                    lerCSVOrdenado(raiz, options);
+                    if(vazia_arvBin(raiz)){
+                        printf("\nA arvore esta vazia");
+                    } else {
+                        printf("\nA arvore possui elementos");
+                    }
+                    printf("\n");
                 break;
-
-        case 2:
-                arvLLRB(vetor, tamanho); // atualizar para o modo de preenchimento
+                case 2:
+                    lerCSV(raiz, options);
+                    if(vazia_arvBin(raiz)){
+                        printf("\nA arvore esta vazia");
+                    } else {
+                        printf("\nA arvore possui elementos");
+                    }
+                    printf("\n");
                 break;
-    }
-    gettimeofday(&fim, NULL);
+            }
+            gettimeofday(&fim, NULL);
 
-    double s = (fim.tv_sec + fim.tv_usec/1000000.0) - (inicio.tv_sec + inicio.tv_usec /1000000.0);
+    long s = (fim.tv_sec - inicio.tv_sec) * 1000000L + (fim.tv_usec - inicio.tv_usec);
     return s;
 }
-
-
-n
-*/
 
