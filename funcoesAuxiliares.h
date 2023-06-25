@@ -35,7 +35,7 @@ void salvarCSV(int* vetor, int tamanho, const char* nomeArquivo);
 
 void radixSort_lsd(int arr[], int n);
 
-void lerCSV(arvoreLLRB *raiz);
+void lerCSV(arvoreLLRB *raiz, int options);
 
 void exportToCSV(Funcionarios arr[], int n);
 
@@ -48,7 +48,7 @@ void liberar_arvBin(arvoreLLRB *raiz);
 void libera_NO(struct NO *no);
 int vazia_arvBin(arvoreLLRB *raiz);
 arvoreLLRB *cria_arvBin();
-void lerCSVOrdenado(arvoreLLRB *raiz);
+void lerCSVOrdenado(arvoreLLRB *raiz, int options);
 
 
 //enviarOrdenado(FUNC *Funcionario, int n);

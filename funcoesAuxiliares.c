@@ -5,7 +5,6 @@
 #include "funcoesAuxiliares.h"
 #include "desempenho.h"
 #include "arvore.h"
-#include "rubroNegra.h"
 
 #define RED 1
 #define BLACK 0
@@ -73,7 +72,7 @@ void imprimirFuncionario(Funcionarios* func) {
     printf("\n");
 }
 
-void lerCSV(arvoreLLRB *raiz) {
+void lerCSV(arvoreLLRB *raiz, int options) {
     FILE *f;
     char linha[200];
 
@@ -109,8 +108,11 @@ void lerCSV(arvoreLLRB *raiz) {
     for (int j = 0; j < numFuncionarios; j++) {
         imprimirFuncionario(&vetorFuncionarios[j]);
     }
-
-    insere_arvoreLLRB(raiz, vetorFuncionarios, numFuncionarios);
+    if(options == 2) {
+        insere_arvoreLLRB(raiz, vetorFuncionarios, numFuncionarios);
+        printf("Realizada a insercao com arvore rubro negra");
+    }
+    //aqui coloca a do arvore AVL
 
     free(vetorFuncionarios);
 }
@@ -132,7 +134,7 @@ void exportToCSV(Funcionarios arr[], int n) {
     printf("Dados exportados para o arquivo");
 }
 
-void lerCSVOrdenado(arvoreLLRB *raiz) {
+void lerCSVOrdenado(arvoreLLRB *raiz, int options) {
     FILE *f;
     char linha[200];
 

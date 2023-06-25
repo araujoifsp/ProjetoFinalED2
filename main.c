@@ -64,7 +64,7 @@ int main()
             raiz = cria_arvBin();
             switch(options2){
                 case 1:
-                    lerCSVOrdenado(raiz);
+                    lerCSVOrdenado(raiz, options);
                     if(vazia_arvBin(raiz)){
                         printf("A arvore esta vazia");
                     } else {
@@ -73,7 +73,7 @@ int main()
                     printf("\n");
                 break;
                 case 2:
-                    lerCSV(raiz);
+                    lerCSV(raiz, options);
                     if(vazia_arvBin(raiz)){
                         printf("A arvore esta vazia");
                     } else {
