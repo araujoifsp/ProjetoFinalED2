@@ -77,7 +77,7 @@
 	"desempenho.h"
 	"arvore.h"
 
-1687670578 source:c:\users\lucas\desktop\projetoed2ordenacaocsv\projetofinaled2\funcoesauxiliares.c
+1687671695 source:c:\users\lucas\desktop\projetoed2ordenacaocsv\projetofinaled2\funcoesauxiliares.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -85,9 +85,8 @@
 	"funcoesAuxiliares.h"
 	"desempenho.h"
 	"arvore.h"
-	"rubroNegra.h"
 
-1687670252 source:c:\users\lucas\desktop\projetoed2ordenacaocsv\projetofinaled2\main.c
+1687671533 source:c:\users\lucas\desktop\projetoed2ordenacaocsv\projetofinaled2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
