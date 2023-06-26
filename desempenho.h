@@ -2,7 +2,8 @@
 #include <sys/time.h>
 
 typedef struct timeval;
-long timer(arvoreLLRB *raiz, int options2, int options);
+long timer(arvoreLLRB *raiz, int options2, int options, int options1);
+
 
 
 

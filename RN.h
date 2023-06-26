@@ -13,9 +13,6 @@ void rotacaoRR(arvoreLLRB *raiz);
 void rotacaoLR(arvoreLLRB *raiz);
 void rotacaoRL(arvoreLLRB *raiz);
 
-int insere_arvAVL(arvoreLLRB *raiz, int valor);
-int remove_arvAVL(arvoreLLRB *raiz, int valor);
-
 arvoreLLRB *cria_arvBin();
 
 void liberar_arvBin(arvoreLLRB *raiz);
@@ -33,4 +30,3 @@ void emOrdem_arvBin(arvoreLLRB *raiz);
 void posOrdem_arvBin(arvoreLLRB *raiz);
 
 int consulta_arvBin(arvoreLLRB *raiz, int valor);
-

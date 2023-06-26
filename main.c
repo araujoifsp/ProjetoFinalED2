@@ -48,12 +48,16 @@ int main()
 
         switch(options){
         case 1 : ;
-            //apagaTela;
-            //printf("\nVoce escolheu a arvore -> AVL\n");
-            //pausaTela;
-            //sub_menu();
-            //options2 = resp_sub_menu();
-            //arquivo = opcao_ecolhida(options2);
+            apagaTela;
+            printf("\nVoce escolheu a arvore -> AVL\n");
+            pausaTela;
+            sub_menu();
+            options2 = resp_sub_menu();
+            arquivo = opcao_ecolhida(options2);
+            raiz = cria_arvBin();
+            tempo = timer(raiz,options2,options);
+            printf("Tempo de execucao da AVL: %ld microssegundos\n", tempo);
+            liberar_arvBin(raiz);
             break;
         case 2 : ;
             apagaTela;
@@ -80,12 +84,6 @@ int main()
             pula2Linhas;
             break;
         }
-
-        //tempo = timer(vetor,tam,options); //atualizar de acordo com o formato das arvores
-        //printf("Tempo de ordena��o: %f segundos\n",tempo[i]);
-        pula2Linhas;
-
-        //radixSort_lsd(vetor, tam);
 
 
     }

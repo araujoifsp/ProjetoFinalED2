@@ -1,36 +1,27 @@
-typedef struct NO *arvAVL;
+typedef struct NO *arvoreAVL;
 
-//codigo avl
-int alt_no(struct NO *no);
-int fatorBalanceamento_NO(struct NO *no);
-int maior(int x, int y);
+typedef struct NO {
+    int info;
+    struct NoAVL* esq;
+    struct NoAVL* dir;
+    int altura;
+} NOAVL;
 
-void rotacaoLL(arvAVL *raiz);
-void rotacaoRR(arvAVL *raiz);
-void rotacaoLR(arvAVL *raiz);
-void rotacaoRL(arvAVL *raiz);
+arvoreAVL* criar_arvAVL();
+int altura_arvAVL(arvoreAVL* raiz);
+int insere_arvAVL(arvoreAVL* raiz, int valor);
+int removearvAVL(arvoreAVL *raiz, int valor);
 
-// fim cod avl aula 1
-int insere_arvAVL(arvAVL *raiz, int valor);
-int remove_arvAVL(arvAVL *raiz, int valor);
-// fim
+void rotacaoLL(arvoreAVL* raiz);
+void rotacaoRR(arvoreAVL* raiz);
+void rotacaoLR(arvoreAVL* raiz);
+void rotacaoRL(arvoreAVL* raiz);
 
 
-arvAVL *cria_arvBin();
+void liberar_arvBin(arvoreAVL *raiz);
+int consulta_arvBin(arvoreAVL* raiz, int valor);
+int busca_arvAVL(arvoreAVL* raiz, int codigo);
 
-void liberar_arvBin(arvAVL *raiz);
 
-int vazia_arvBin(arvAVL *raiz);
 
-int altura_arvBin(arvAVL *raiz);
-
-int totalNO_arvBin(arvAVL *raiz);
-
-void preOrdem_arvBin(arvAVL *raiz);
-
-void emOrdem_arvBin(arvAVL *raiz);
-
-void posOrdem_arvBin(arvAVL *raiz);
-
-int consulta_arvBin(arvAVL *raiz, int valor);
 

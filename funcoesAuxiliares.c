@@ -113,7 +113,10 @@ void lerCSV(arvoreLLRB *raiz, int options) {
         insere_arvoreLLRB(raiz, vetorFuncionarios, numFuncionarios);
         printf("Realizada a insercao com arvore rubro negra\n");
     }
-    //aqui coloca a do arvore AVL
+     if(options == 1) {
+        insere_arvAVL(raiz, vetorFuncionarios, numFuncionarios);
+        printf("Realizada a insercao com arvore AVL\n");
+    }
 
     free(vetorFuncionarios);
 }
@@ -172,15 +175,19 @@ void lerCSVOrdenado(arvoreLLRB *raiz, int options) {
     for (int j = 0; j < numFuncionarios; j++) {
         imprimirFuncionario(&vetorFuncionarios[j]);
     }*/
-
     if(options == 2) {
         insere_arvoreLLRB(raiz, vetorFuncionarios, numFuncionarios);
         printf("Realizada a insercao com arvore rubro negra\n");
     }
-    //aqui coloca a do arvore AVL
+
+    if(options == 1) {
+        insere_arvAVL(raiz, vetorFuncionarios, numFuncionarios);
+        printf("Realizada a insercao com arvore AVL\n");
+    }
 
     free(vetorFuncionarios);
 }
+
 
 struct NO {
     Funcionarios *funcionario;
@@ -247,7 +254,7 @@ struct NO *move2DirRED(struct NO *H){
     return H;
 }
 
-struct NO *balancear(struct NO *H){
+struct NO *balancearAVL(struct NO *H){
     if(cor(H->dir) == RED){
         H = rotacionaEsquerda(H);
     }
@@ -312,6 +319,14 @@ void insere_arvoreLLRB(arvoreLLRB *raiz, Funcionarios vetorFuncionarios[], int t
 
     if (*raiz != NULL) {
         (*raiz)->cor = BLACK;
+    }
+}
+
+void insere_arvAVL(arvAVL *raiz, Funcionarios vetorFuncionarios[], int tamanho) {
+    int i;
+    for (i = 0; i < tamanho; i++) {
+        int resp;
+        *raiz = insereNO(*raiz, &vetorFuncionarios[i], &resp);
     }
 }
 
@@ -439,4 +454,3 @@ int vazia_arvBin(arvoreLLRB *raiz) {
     }
     return 0;
 }
-

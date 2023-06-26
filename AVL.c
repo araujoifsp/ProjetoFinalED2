@@ -1,130 +1,136 @@
-
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
+#include "AVL.h"
 #include "funcoesAuxiliares.h"
 #include "arvore.h"
-#include "AVL.h"
 #include "desempenho.h"
 
-/*
-typedef struct ArvoreAVL {
-    struct Funcionarios* dado;
-    struct ArvoreAVL* esquerda;
-    struct ArvoreAVL* direita;
+typedef struct No {
+    int info;
+    struct No* esq;
+    struct No* dir;
     int altura;
-} ArvoreAVL;
+}NoAVL;
 
-int max(int a, int b) {
-    return (a > b) ? a : b;
-}
+typedef struct{
+    NoAVL *raiz;
+}arvB;
 
-int altura(ArvoreAVL* node) {
-    if (node == NULL)
-        return 0;
-    return node->altura;
-}
-
-int fatorBalanceamento(ArvoreAVL* node) {
-    if (node == NULL)
-        return 0;
-    return altura(node->esquerda) - altura(node->direita);
-}
-
-ArvoreAVL* criarNo(Funcionarios* funcionario) {
-    ArvoreAVL* novoNo = (ArvoreAVL*)malloc(sizeof(ArvoreAVL));
-    novoNo->dado = funcionario;
-    novoNo->esquerda = NULL;
-    novoNo->direita = NULL;
-    novoNo->altura = 1;
-    return novoNo;
-}
-
-ArvoreAVL* rotacaoDireita(ArvoreAVL* y) {
-    ArvoreAVL* x = y->esquerda;
-    ArvoreAVL* T2 = x->direita;
-
-    x->direita = y;
-    y->esquerda = T2;
-
-    y->altura = max(altura(y->esquerda), altura(y->direita)) + 1;
-    x->altura = max(altura(x->esquerda), altura(x->direita)) + 1;
-
-    return x;
-}
-
-ArvoreAVL* rotacaoEsquerda(ArvoreAVL* x) {
-    ArvoreAVL* y = x->direita;
-    ArvoreAVL* T2 = y->esquerda;
-
-    y->esquerda = x;
-    x->direita = T2;
-
-    x->altura = max(altura(x->esquerda), altura(x->direita)) + 1;
-    y->altura = max(altura(y->esquerda), altura(y->direita)) + 1;
-
-    return y;
-}
-
-ArvoreAVL* inserir(ArvoreAVL* node, Funcionarios* funcionario) {
-    if (node == NULL){
-        return criarNo(funcionario);
+int altura(NoAVL *No) {
+    if (No == NULL) {
+        return -1;
     }
+    return No->altura;
+}
 
-    if (funcionario->codigo < node->dado.codigo) {
-        node->esquerda = inserir(node->esquerda, funcionario);
-    } else if (funcionario.codigo > node->dado.codigo) {
-        node->direita = inserir(node->direita, funcionario);
+void atualizarAltura(NoAVL *No) {
+    int alturaEsq = altura(No->esq);
+    int alturaDir = altura(No->dir);
+    No->altura = (alturaEsq > alturaDir ? alturaEsq : alturaDir) + 1;
+}
+
+NoAVL* rotacaoDireita(NoAVL *No) {
+    NoAVL *novaRaiz = No->esq;
+    No->esq = novaRaiz->dir;
+    novaRaiz->dir = No;
+    atualizarAltura(No);
+    atualizarAltura(novaRaiz);
+    return novaRaiz;
+}
+
+NoAVL* rotacaoEsquerda(NoAVL *No) {
+    NoAVL *novaRaiz = No->dir;
+    No->dir = novaRaiz->esq;
+    novaRaiz->esq = No;
+    atualizarAltura(No);
+    atualizarAltura(novaRaiz);
+    return novaRaiz;
+}
+
+NoAVL* balancear(NoAVL *No) {
+    if (altura(No->esq) - altura(No->dir) > 1) {
+        if (altura(No->esq->dir) > altura(No->esq->esq)) {
+            No->esq = rotacaoEsquerda(No->esq);
+        }
+        No = rotacaoDireita(No);
+    } else if (altura(No->dir) - altura(No->esq) > 1) {
+        if (altura(No->dir->esq) > altura(No->dir->dir)) {
+            No->dir = rotacaoDireita(No->dir);
+        }
+        No = rotacaoEsquerda(No);
+    }
+    return No;
+}
+NoAVL* inserirDireita(NoAVL* No, int dado);
+
+NoAVL* inserirEsquerda(NoAVL *No, int dado) {
+    if (No == NULL) {
+        NoAVL *novo = (NoAVL*)malloc(sizeof(NoAVL));
+        novo->info = dado;
+        novo->esq = NULL;
+        novo->dir = NULL;
+        novo->altura = 0;
+        return novo;
+    }
+    if (dado < No->info) {
+        No->esq = inserirEsquerda(No->esq, dado);
     } else {
-        // O funcion�rio j� existe na �rvore (caso queira evitar duplicatas)
-        return node;
+        No->dir = inserirDireita(No->dir, dado);
     }
-
-    node->altura = 1 + max(altura(node->esquerda), altura(node->direita));
-
-    int balanceamento = fatorBalanceamento(node);
-
-    // Casos de rota��o AVL
-    if (balanceamento > 1 && funcionario.codigo < node->esquerda->dado.codigo) {
-        return rotacaoDireita(node);
-    }
-
-    if (balanceamento < -1 && funcionario.codigo > node->direita->dado.codigo) {
-        return rotacaoEsquerda(node);
-    }
-
-    if (balanceamento > 1 && funcionario.codigo > node->esquerda->dado.codigo) {
-        node->esquerda = rotacaoEsquerda(node->esquerda);
-        return rotacaoDireita(node);
-    }
-
-    if (balanceamento < -1 && funcionario.codigo < node->direita->dado.codigo) {
-        node->direita = rotacaoDireita(node->direita);
-        return rotacaoEsquerda(node);
-    }
-
-    return node;
+    atualizarAltura(No);
+    return balancear(No);
 }
 
-// Fun��o de exemplo para percorrer a �rvore em ordem
-void percorrerEmOrdem(ArvoreAVL* root) {
-    if (root != NULL) {
-        percorrerEmOrdem(root->esquerda);
-        // Fa�a algo com os dados do funcion�rio, por exemplo, imprimir
-        printf("%s\n", root->dado->nome);
-        percorrerEmOrdem(root->direita);
+NoAVL* inserirDireita(NoAVL *No, int dado) {
+    if (No == NULL) {
+        NoAVL *novo = (NoAVL*)malloc(sizeof(NoAVL));
+        novo->info = dado;
+        novo->esq = NULL;
+        novo->dir = NULL;
+        novo->altura = 0;
+        return novo;
     }
+    if (dado < No->info) {
+        No->esq = inserirEsquerda(No->esq, dado);
+    } else {
+        No->dir = inserirDireita(No->dir, dado);
+    }
+    atualizarAltura(No);
+    return balancear(No);
 }
 
-/*
-int main() {
-    id* raiz = NULL;
+void inserir(arvB *arv, int dado) {
+    arv->raiz = inserirEsquerda(arv->raiz, dado);
+}
 
-    raiz = //vir aqui a lista de func
+int consulta_arvAVL(arvAVL *raiz, int valor){
+    if(raiz == NULL){
+        return 0;
+    }
 
-    printf("Percurso em ordem da �rvore AVL: ");
-    percorrerEmOrdem(raiz);
-    printf("\n");
+    struct NO *atual = *raiz;
 
+    while(atual != NULL){
+        if(valor == atual->info){
+            return 1;
+        }
+        if(valor > atual->info){
+            atual = atual->dir;
+        } else {
+            atual = atual->esq;
+        }
+    }
     return 0;
 }
-*/
+
+void libera_arvAVL(struct No *NoAVL) {
+    if(NoAVL == NULL){
+        return;
+    }
+    libera_arvAVL(NoAVL->esq);
+    libera_arvAVL(NoAVL->dir);
+    free(NoAVL);
+    NoAVL = NULL;
+}
+

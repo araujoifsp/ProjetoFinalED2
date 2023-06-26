@@ -5,11 +5,31 @@
 #include "desempenho.h"
 #include "arvore.h"
 
-long timer(arvoreLLRB *raiz, int options2, int options){
+long timer(arvoreLLRB *raiz, int options2, int options, int options1){
         struct timeval inicio, fim;
 
             gettimeofday(&inicio, NULL);
             switch(options2){
+                case 1:
+                    lerCSVOrdenado(raiz, options);
+                    if(vazia_arvBin(raiz)){
+                        printf("\nA arvore esta vazia");
+                    } else {
+                        printf("\nA arvore possui elementos");
+                    }
+                    printf("\n");
+                break;
+                case 2:
+                    lerCSV(raiz, options);
+                    if(vazia_arvBin(raiz)){
+                        printf("\nA arvore esta vazia");
+                    } else {
+                        printf("\nA arvore possui elementos");
+                    }
+                    printf("\n");
+                break;
+            }
+            switch(options1){
                 case 1:
                     lerCSVOrdenado(raiz, options);
                     if(vazia_arvBin(raiz)){
@@ -34,4 +54,3 @@ long timer(arvoreLLRB *raiz, int options2, int options){
     long s = (fim.tv_sec - inicio.tv_sec) * 1000000L + (fim.tv_usec - inicio.tv_usec);
     return s;
 }
-

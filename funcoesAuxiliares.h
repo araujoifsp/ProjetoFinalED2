@@ -25,6 +25,7 @@ void sub_menu();
 
 int resp_sub_menu();
 
+int opcao_ecolhida(int options1);
 int opcao_ecolhida(int options2);
 
 int criaVetor(int *vetor, int tamanho);
